@@ -1,0 +1,169 @@
+:root {
+  --terminal-green: #00cc66;
+}
+
+body {
+  margin: 0;
+  padding: 2rem;
+  background-color: black;
+  color: var(--terminal-green);
+  font-family: 'Share Tech Mono', monospace;
+  min-height: 100vh;
+}
+.terminal-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+.page-frame {
+  border: 6px double var(--terminal-green);
+  padding: 2rem;
+  margin: 1rem;
+  background-color: black;
+  box-sizing: border-box;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+.terminal-border {
+  border: 4px double var(--terminal-green);
+  padding: 2rem 2.5rem;
+  max-width: 420px;
+  width: 100%;
+  background-color: black;
+  box-sizing: border-box;
+  margin: 1rem;
+}
+
+main {
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  font-size: 2rem;
+  border-bottom: 1px dashed var(--terminal-green);
+  padding-bottom: 0.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.form-group {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  text-align: left;
+  font-size: 1.1rem;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: black;
+  border: 1px solid var(--terminal-green);
+  color: var(--terminal-green);
+  font-family: inherit;
+  font-size: 1.1rem;
+  box-sizing: border-box;
+}
+
+select option {
+  background-color: black;
+  color: var(--terminal-green);
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: black;
+  border: 2px solid var(--terminal-green);
+  color: var(--terminal-green);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background-color: #003322;
+}
+
+#error,
+#decryption-error,
+#rsa-error {
+  color: red;
+  margin-top: 1.5rem;
+}
+
+#result,
+#decryption-result,
+#rsa-result {
+  margin-top: 2rem;
+  border-top: 1px dashed var(--terminal-green);
+  padding-top: 1rem;
+  font-weight: bold;
+  word-break: break-word;
+  font-size: 1.1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.rsa-key-block {
+  margin-top: 1rem;
+  white-space: pre-wrap;
+  text-align: left;
+  border: 1px dashed var(--terminal-green);
+  padding: 1rem;
+  font-size: 0.95rem;
+  background-color: black;
+  color: var(--terminal-green);
+}
+#steg-success {
+  margin-top: 1.5rem;
+  color: var(--terminal-green);
+  font-weight: bold;
+}
+
+#steg-extract-result {
+  margin-top: 2rem;
+  border-top: 1px dashed var(--terminal-green);
+  padding-top: 1rem;
+  font-weight: bold;
+  white-space: pre-wrap;
+}
+
+.blinking-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  width: 10px;
+  animation: blink 0.9s step-end infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    color: transparent;
+  }
+  50% {
+    color: var(--terminal-green);
+  }
+}

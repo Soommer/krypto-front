@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Szyfrowanie</title>
+    <script type="module" crossorigin src="/assets/index-B4f2P9In.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DUhUBhi3.css">
+  </head>
+  <body>
+    <div class="page-frame">
+    <div id="app">
+      <div class="terminal-container">
+
+        <div class="terminal-border">
+          <main>
+            <h1>Szyfrowanie wiadomości</h1>
+            <form id="encryption-form">
+              <div class="form-group">
+                <label for="plainText">PlainText:</label>
+                <input type="text" id="plainText" required />
+              </div>
+
+              <div class="form-group">
+                <label for="algorithm">Algorithm:</label>
+                <select id="algorithm" required>
+                  <option value="">-- Wybierz algorytm --</option>
+                  <option value="cezar">Cezar</option>
+                  <option value="vigenere">Vigenère</option>
+                  <option value="sha256">SHA-256</option>
+                  <option value="aes">AES</option>
+                  <option value="rsa">RSA</option>
+                </select>
+              </div>
+
+              <div class="form-group" id="key-container">
+                <label for="key">Key:</label>
+                <input type="text" id="key" required />
+              </div>
+
+              <button type="submit">Szyfruj</button>
+            </form>
+
+            <div id="result" class="hidden"></div>
+            <div id="error" class="hidden error"></div>
+          </main>
+        </div>
+
+        <div class="terminal-border">
+          <main>
+            <h1>Deszyfrowanie wiadomości</h1>
+            <form id="decryption-form">
+              <div class="form-group">
+                <label for="decryptionText">CipherText:</label>
+                <input type="text" id="decryptionText" required />
+              </div>
+
+              <div class="form-group">
+                <label for="decryptionAlgorithm">Algorithm:</label>
+                <select id="decryptionAlgorithm" required>
+                  <option value="">-- Wybierz algorytm --</option>
+                  <option value="cezar">Cezar</option>
+                  <option value="vigenere">Vigenère</option>
+                  <option value="aes">AES</option>
+                  <option value="rsa">RSA</option>
+                </select>
+              </div>
+
+              <div class="form-group" id="decryption-key-container">
+                <label for="decryptionKey">Key:</label>
+                <input type="text" id="decryptionKey" required />
+              </div>
+
+              <button type="submit">Deszyfruj</button>
+            </form>
+
+            <div id="decryption-result" class="hidden"></div>
+            <div id="decryption-error" class="hidden error"></div>
+          </main>
+        </div>
+
+        <div class="terminal-border">
+          <main>
+            <h1>Generowanie kluczy RSA</h1>
+            <button id="generate-rsa-button">Generuj klucze</button>
+            <div id="rsa-result" class="hidden"></div>
+            <div id="rsa-error" class="hidden error"></div>
+          </main>
+        </div>
+
+
+        <div class="terminal-border">
+          <main>
+            <h1>Zostaw ukrytą wiadomość</h1>
+            <form id="steganography-form">
+              <div class="form-group">
+                <label for="steg-image">Obraz (PNG):</label>
+                <input type="file" id="steg-image" accept="image/png" required />
+              </div>
+
+              <div class="form-group">
+                <label for="steg-message">Wiadomość do ukrycia:</label>
+                <input type="text" id="steg-message" required />
+              </div>
+
+              <button type="submit">Osadź wiadomość</button>
+          </form>
+
+          <div id="steg-error" class="hidden error"></div>
+          <div id="steg-success" class="hidden">📥 Obraz z wiadomością został pobrany.</div>
+        </main>
+      </div>
+
+
+
+
+      <div class="terminal-border">
+        <main>
+          <h1>Odczytaj ukrytą wiadomość</h1>
+          <form id="steg-extract-form">
+            <div class="form-group">
+              <label for="steg-extract-image">Obraz (PNG):</label>
+              <input type="file" id="steg-extract-image" accept="image/png" required />
+            </div>
+
+            <button type="submit">Odczytaj wiadomość</button>
+          </form>
+
+          <div id="steg-extract-result" class="hidden"></div>
+          <div id="steg-extract-error" class="hidden error"></div>
+        </main>
+      </div>
+
+      <div class="terminal-border">
+        <main>
+          <h1>Ukryj obraz w obrazie</h1>
+          <form id="image-in-image-form">
+            <div class="form-group">
+              <label for="host-image">Obraz bazowy:</label>
+              <input type="file" id="host-image" accept="image/png" required />
+            </div>
+            <div class="form-group">
+              <label for="hidden-image">Obraz do ukrycia:</label>
+              <input type="file" id="hidden-image" accept="image/png" required />
+            </div>
+            <button type="submit">Osadź obraz</button>
+          </form>
+          <div id="image-in-image-error" class="hidden error"></div>
+          <div id="image-in-image-success" class="hidden">📥 Obraz z ukrytym obrazem został pobrany.</div>
+        </main>
+      </div>
+
+      <div class="terminal-border">
+        <main>
+          <h1>Odczytaj ukryty obraz</h1>
+          <form id="extract-image-form">
+            <div class="form-group">
+              <label for="extract-image">Obraz z ukrytym obrazem:</label>
+              <input type="file" id="extract-image" accept="image/png" required />
+            </div>
+            <button type="submit">Odczytaj obraz</button>
+          </form>
+          <div id="extract-image-error" class="hidden error"></div>
+          <div id="extract-image-success" class="hidden">📥 Ukryty obraz został pobrany.</div>
+        </main>
+      </div>
+
+
+    </div> 
+    </div>
+    </div>
+  </body>
+</html>
