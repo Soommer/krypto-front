@@ -76,7 +76,11 @@ form.addEventListener('submit', async (e) => {
       body: JSON.stringify(request),
     });
 
-    if (!response.ok) throw new Error('Błąd serwera: ' + response.statusText);
+    if (!response.ok){
+        const errorData = await response.json();
+        const errorMessage = errorData.error || 'Błąd podczas przesyłania';
+        throw new Error('Błąd podczas przesyłania: ' + errorMessage);
+    } 
 
     const data = (await response.json()) as EncryptionResponse;
 
@@ -107,7 +111,11 @@ decryptionForm.addEventListener('submit', async (e) => {
       body: JSON.stringify(request),
     });
 
-    if (!response.ok) throw new Error('Błąd serwera: ' + response.statusText);
+    if (!response.ok){
+        const errorData = await response.json();
+        const errorMessage = errorData.error || 'Błąd podczas przesyłania';
+        throw new Error('Błąd podczas przesyłania: ' + errorMessage);
+    } 
 
     const data = (await response.json()) as EncryptionResponse;
 
@@ -131,8 +139,11 @@ generateRsaButton.addEventListener('click', async () => {
       method: 'GET',
     });
 
-    if (!response.ok) throw new Error('Błąd podczas generowania kluczy: ' + response.statusText);
-
+    if (!response.ok){
+        const errorData = await response.json();
+        const errorMessage = errorData.error || 'Błąd podczas przesyłania';
+        throw new Error('Błąd podczas przesyłania: ' + errorMessage);
+    } 
     const data = await response.json() as {
       publicKeyXml: string;
       privateKeyXml: string;
@@ -189,7 +200,9 @@ stegForm.addEventListener('submit', async (e) => {
     });
 
     if (!response.ok) {
-      throw new Error('Błąd podczas przesyłania: ' + response.statusText);
+        const errorData = await response.json();
+        const errorMessage = errorData.error || 'Błąd podczas przesyłania';
+        throw new Error('Błąd podczas przesyłania: ' + errorMessage);
     }
 
     const blob = await response.blob();
@@ -235,7 +248,9 @@ stegExtractForm.addEventListener('submit', async (e) => {
     });
 
     if (!response.ok) {
-      throw new Error('Błąd podczas odczytu wiadomości: ' + response.statusText);
+        const errorData = await response.json();
+        const errorMessage = errorData.error || 'Błąd podczas przesyłania';
+        throw new Error('Błąd podczas przesyłania: ' + errorMessage);
     }
     const data = (await response.json()) as EncryptionResponse;
 
@@ -273,7 +288,9 @@ stegExtractForm.addEventListener('submit', async (e) => {
     });
 
     if (!response.ok) {
-      throw new Error('Błąd podczas przesyłania: ' + response.statusText);
+        const errorData = await response.json();
+        const errorMessage = errorData.error || 'Błąd podczas przesyłania';
+        throw new Error('Błąd podczas przesyłania: ' + errorMessage);
     }
 
     const blob = await response.blob();
